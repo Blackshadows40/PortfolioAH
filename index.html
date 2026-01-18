@@ -1,41 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alamin Howlader | Sales & After Sales Service Professional</title>
+    <title>Alamin Howlader | Sales & After Sales Professional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#14b8a6',
+                        dark: '#020617',
+                        card: 'rgba(30, 41, 59, 0.4)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
         }
 
+        /* Glassmorphism Utilities */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px border rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, background 0.3s ease;
+            background: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15);
         }
 
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #2dd4bf);
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Noise Texture for Premium Feel */
+        .bg-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #60a5fa 0%, #2dd4bf 50%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        /* Animated Grid Background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Nav Link Animation */
         .nav-link {
             position: relative;
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -43,280 +126,712 @@
             height: 2px;
             bottom: -4px;
             left: 0;
-            background-color: #3b82f6;
+            background: #3b82f6;
             transition: width 0.3s ease;
         }
-
         .nav-link:hover::after {
             width: 100%;
         }
 
-        #mobile-menu {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Timeline Dot Pulse */
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
+<body class="bg-dark text-slate-200 antialiased selection:bg-blue-500/30 selection:text-blue-200">
+
+    <!-- Background Decoration -->
+    <div class="bg-noise"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+        <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0">
-                    <span class="text-xl font-bold gradient-text tracking-tighter">AH.</span>
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex-shrink-0 group relative z-50">
+                    <span class="text-2xl font-extrabold text-white tracking-tighter">AH<span class="text-blue-500">.</span></span>
+                    <div class="absolute -inset-2 bg-blue-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Expertise</a>
+                    <a href="#experience" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Experience</a>
+                    <a href="#work" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Work</a>
+                    <a href="#certifications" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Training</a>
+                    <a href="#education" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors uppercase tracking-wider">Education</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-white/5 hover:bg-blue-600 border border-white/10 hover:border-blue-500 rounded-lg text-sm font-bold text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]">
+                        Let's Talk
+                    </a>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-sm font-medium hover:text-white">Home</a>
-                    <a href="#about" class="nav-link text-sm font-medium hover:text-white">About</a>
-                    <a href="#experience" class="nav-link text-sm font-medium hover:text-white">Experience</a>
-                    <a href="#education" class="nav-link text-sm font-medium hover:text-white">Education</a>
-                    <a href="#contact" class="nav-link text-sm font-medium hover:text-white">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-btn" class="p-2 text-slate-400 hover:text-white">
-                        <i class="fas fa-bars text-xl"></i>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden relative z-50">
+                    <button id="menu-btn" class="p-2 text-slate-300 hover:text-white transition-colors focus:outline-none">
+                        <i class="fas fa-bars-staggered text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 py-4 space-y-4">
-            <a href="#home" class="block text-lg hover:text-blue-400">Home</a>
-            <a href="#about" class="block text-lg hover:text-blue-400">About</a>
-            <a href="#experience" class="block text-lg hover:text-blue-400">Experience</a>
-            <a href="#education" class="block text-lg hover:text-blue-400">Education</a>
-            <a href="#contact" class="block text-lg hover:text-blue-400">Contact</a>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center space-y-8">
+            <a href="#home" class="text-2xl font-bold text-white hover:text-blue-400">Home</a>
+            <a href="#about" class="text-2xl font-bold text-white hover:text-blue-400">Expertise</a>
+            <a href="#experience" class="text-2xl font-bold text-white hover:text-blue-400">Experience</a>
+            <a href="#work" class="text-2xl font-bold text-white hover:text-blue-400">Work Demo</a>
+            <a href="#certifications" class="text-2xl font-bold text-white hover:text-blue-400">Training</a>
+            <a href="#education" class="text-2xl font-bold text-white hover:text-blue-400">Education</a>
+            <a href="#contact" class="px-8 py-3 bg-blue-600 rounded-full text-xl font-bold text-white shadow-lg shadow-blue-600/30">Connect Now</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-            <div class="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-blue-500 overflow-hidden mb-8 shadow-2xl shadow-blue-500/20">
-                <!-- User Profile Image -->
-                <img src="https://lh3.googleusercontent.com/u/0/d/1M_--B36An5AvqLrPz3cWJiIKYPRUTofU" 
-                     alt="Alamin Howlader" 
-                     class="w-full h-full object-cover" 
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Alamin+Howlader&background=0D8ABC&color=fff&size=512';">
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            
+            <!-- Floating Image Container with extra top spacing -->
+            <div class="relative group mb-12 mt-12 animate-fade-in-up">
+                <!-- Decorative Orbit Rings -->
+                <div class="absolute -inset-8 border border-blue-500/20 rounded-full animate-spin-slow pointer-events-none"></div>
+                <div class="absolute -inset-4 border border-teal-500/20 rounded-full animate-spin-slow pointer-events-none" style="animation-direction: reverse;"></div>
+                
+                <!-- Glow Effect -->
+                <div class="absolute -inset-1 bg-gradient-to-tr from-blue-600 via-teal-400 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                
+                <!-- Main Image -->
+                <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-slate-900/50 shadow-2xl animate-float overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1M_--B36An5AvqLrPz3cWJiIKYPRUTofU" 
+                         alt="Alamin Howlader" 
+                         class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" 
+                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Alamin+Howlader&background=3b82f6&color=fff&size=512';">
+                </div>
             </div>
-            <h1 class="text-4xl md:text-7xl font-bold mb-4 tracking-tight">
-                Alamin <span class="gradient-text">Howlader</span>
+
+            <!-- Status Badge -->
+            <div class="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest uppercase mb-8 animate-fade-in-up delay-100 hover:bg-blue-500/20 transition-colors cursor-default">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                </span>
+                <span>Open for Innovation</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight leading-[1.1] animate-fade-in-up delay-200">
+                Alamin <span class="text-gradient">Howlader</span>
             </h1>
-            <p class="text-lg md:text-2xl text-slate-400 max-w-2xl mb-8">
-                Customer Success Manager | 1000Fix Services | Specialist in Sales, After-Sales, and Team Management.
+            
+            <!-- Subheading -->
+            <p class="text-lg md:text-2xl text-slate-400 max-w-3xl mb-12 leading-relaxed animate-fade-in-up delay-300 font-light">
+                <span class="text-white font-semibold">Customer Success Manager</span> at 1000Fix Services. 
+                Optimizing sales ecosystems and bridging the gap between corporate goals and consumer satisfaction.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#contact" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-semibold transition-colors">
-                    Get In Touch
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-5 w-full sm:w-auto animate-fade-in-up delay-400">
+                <a href="#contact" class="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold text-white transition-all shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.6)] flex items-center justify-center overflow-hidden">
+                    <span class="relative z-10">Start a Conversation</span>
+                    <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform relative z-10"></i>
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
-                <a href="#experience" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-full font-semibold transition-colors">
-                    View Experience
+                <a href="#work" class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl font-bold text-white transition-all backdrop-blur-sm flex items-center justify-center group">
+                    <i class="fas fa-play-circle mr-2 text-slate-400 group-hover:text-white transition-colors"></i>
+                    See Work Demo
                 </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50 hidden md:block">
+                <i class="fas fa-chevron-down text-white text-xl"></i>
             </div>
         </div>
     </section>
 
-    <!-- About / Skills -->
-    <section id="about" class="py-24 bg-slate-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Core <span class="text-blue-500">Expertise</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-2xl">
-                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Sales Strategy</h3>
-                    <p class="text-slate-400 text-sm">4+ years of retail and consumer sales experience driving revenue growth through strategic market penetration.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <div class="text-teal-400 text-3xl mb-4"><i class="fas fa-tools"></i></div>
-                    <h3 class="text-xl font-bold mb-2">After-Sales Service</h3>
-                    <p class="text-slate-400 text-sm">Expert in customer satisfaction and technical service management, Service Centre Management, Project Management.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <div class="text-purple-400 text-3xl mb-4"><i class="fas fa-boxes-stacked"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Operations</h3>
-                    <p class="text-slate-400 text-sm">Proficient in Dealer Management, Inventory Control, and Corporate Managerial Activities.</p>
-                </div>
+    <!-- Expertise Section -->
+    <section id="about" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-blue-500 font-bold tracking-widest uppercase text-sm mb-2 block">My Superpowers</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Core Expertise</h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-blue-600 to-teal-400 mx-auto rounded-full"></div>
             </div>
 
-            <!-- Detailed Skills -->
-            <div class="mt-16 flex flex-wrap justify-center gap-3">
-                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm border border-slate-700">Office Applications</span>
-                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm border border-slate-700">Project Management</span>
-                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm border border-slate-700">Team Leadership</span>
-                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm border border-slate-700">Stakeholder Management</span>
-                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm border border-slate-700">CRM</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl group relative overflow-hidden reveal delay-100">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-chart-pie text-9xl text-blue-500 transform rotate-12 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mb-8 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)]">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Sales Strategy</h3>
+                    <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Driving high-stakes retail & consumer sales through meticulous market analysis and data-driven forecasting.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl group relative overflow-hidden reveal delay-200">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-headset text-9xl text-teal-500 transform -rotate-12 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="w-16 h-16 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 text-2xl mb-8 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300 shadow-[0_0_30px_-5px_rgba(45,212,191,0.3)]">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">After-Sales Ops</h3>
+                    <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Mastery in technical service lifecycle management and CRM optimization to ensure maximum brand loyalty.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl group relative overflow-hidden reveal delay-300">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fas fa-layer-group text-9xl text-purple-500 transform rotate-12 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="w-16 h-16 bg-purple-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 text-2xl mb-8 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300 shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)]">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Ops Management</h3>
+                    <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Proficient in dealer network orchestration, inventory control, and leading cross-functional teams.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience -->
-    <section id="experience" class="py-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4">Professional Journey</h2>
+    <!-- Experience Section -->
+    <section id="experience" class="py-32 relative bg-slate-950/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center space-x-6 mb-16 reveal">
+                <h2 class="text-4xl font-bold text-white">Career Path</h2>
+                <div class="flex-grow h-px bg-gradient-to-r from-blue-600/50 to-transparent"></div>
+            </div>
             
             <div class="space-y-12">
                 <!-- 1000FIX -->
-                <div class="relative pl-8 border-l border-slate-800 pb-12">
-                    <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-2 top-0 shadow-lg shadow-blue-500/50"></div>
-                    <div class="mb-1">
-                        <span class="text-blue-400 font-bold">Feb 2022 - Oct 2025</span>
+                <div class="group relative pl-10 md:pl-16 border-l-2 border-slate-800 hover:border-blue-500/50 transition-colors duration-500 reveal delay-100">
+                    <div class="absolute w-5 h-5 bg-slate-950 border-4 border-blue-500 rounded-full -left-[11px] top-1 timeline-dot shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+                    
+                    <div class="glass-card p-6 md:p-8 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">Customer Success Manager</h3>
+                            <span class="inline-block mt-2 md:mt-0 px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-bold border border-blue-500/20">FEB 2022 — PRESENT</span>
+                        </div>
+                        <p class="text-lg text-slate-300 font-medium mb-6 flex items-center">
+                            <i class="fas fa-briefcase mr-2 text-slate-500"></i> 1000FIX SERVICE LTD
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-slate-400 group-hover:text-slate-300 transition-colors">
+                                <i class="fas fa-check-circle text-blue-500 mt-1.5 mr-3 text-sm flex-shrink-0"></i>
+                                <span>Orchestrated complete service operation lifecycles across regional hubs, ensuring <strong class="text-white">99% SLA compliance</strong>.</span>
+                            </li>
+                            <li class="flex items-start text-slate-400 group-hover:text-slate-300 transition-colors">
+                                <i class="fas fa-check-circle text-blue-500 mt-1.5 mr-3 text-sm flex-shrink-0"></i>
+                                <span>Optimized inventory turnover and dealer relationship performance metrics, reducing costs by 15%.</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-2xl font-bold text-white">Customer Success Manager</h3>
-                    <p class="text-slate-400 font-medium mb-4">1000FIX SERVICE LTD</p>
-                    <ul class="text-slate-400 space-y-2 list-disc ml-4">
-                        <li>Directed comprehensive managerial activities for service operations.</li>
-                        <li>Managed dealer relationships and inventory optimization.</li>
-                        <li>Oversaw sales and specialized after-sales service workflows.</li>
-                    </ul>
                 </div>
 
                 <!-- Softalogy -->
-                <div class="relative pl-8 border-l border-slate-800 pb-12">
-                    <div class="absolute w-4 h-4 bg-slate-700 rounded-full -left-2 top-0"></div>
-                    <div class="mb-1">
-                        <span class="text-blue-400 font-bold">Jun 2021 - Jan 2022</span>
+                <div class="group relative pl-10 md:pl-16 border-l-2 border-slate-800 hover:border-slate-600 transition-colors reveal delay-200">
+                    <div class="absolute w-5 h-5 bg-slate-950 border-4 border-slate-700 rounded-full -left-[11px] top-1 group-hover:border-slate-500 transition-colors"></div>
+                    
+                    <div class="glass-card p-6 md:p-8 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-white">Market Sales In-Charge</h3>
+                            <span class="inline-block mt-2 md:mt-0 px-3 py-1 bg-slate-700/30 text-slate-400 rounded-full text-xs font-bold">JUN 2021 — JAN 2022</span>
+                        </div>
+                        <p class="text-lg text-slate-300 font-medium mb-2 flex items-center">
+                            <i class="fas fa-briefcase mr-2 text-slate-500"></i> Softalogy Limited
+                        </p>
+                        <p class="text-slate-400 text-sm">Led market penetration strategies for software solutions in the SME sector.</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-white">Market Sales In-Charge</h3>
-                    <p class="text-slate-400 font-medium mb-4">Softalogy Limited</p>
-                    <ul class="text-slate-400 space-y-2 list-disc ml-4">
-                        <li>Led team management and retailer communication strategies.</li>
-                        <li>Enhanced Customer Relations Management (CRM) efficiency.</li>
-                    </ul>
                 </div>
 
                 <!-- DBBL -->
-                <div class="relative pl-8 border-l border-slate-800">
-                    <div class="absolute w-4 h-4 bg-slate-700 rounded-full -left-2 top-0"></div>
-                    <div class="mb-1">
-                        <span class="text-blue-400 font-bold">Jan 2016 - Nov 2017</span>
+                <div class="group relative pl-10 md:pl-16 border-l-2 border-slate-800 hover:border-slate-600 transition-colors reveal delay-300">
+                    <div class="absolute w-5 h-5 bg-slate-950 border-4 border-slate-700 rounded-full -left-[11px] top-1 group-hover:border-slate-500 transition-colors"></div>
+                    
+                    <div class="glass-card p-6 md:p-8 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-white">Mobile Banking Officer</h3>
+                            <span class="inline-block mt-2 md:mt-0 px-3 py-1 bg-slate-700/30 text-slate-400 rounded-full text-xs font-bold">JAN 2016 — NOV 2017</span>
+                        </div>
+                        <p class="text-lg text-slate-300 font-medium mb-2 flex items-center">
+                            <i class="fas fa-building-columns mr-2 text-slate-500"></i> Dutch-Bangla Bank PLC
+                        </p>
+                        <p class="text-slate-400 text-sm">Spearheaded customer acquisition for Rocket mobile banking services in rural divisions.</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-white">Mobile Banking Recommendations Officer (MBRO)</h3>
-                    <p class="text-slate-400 font-medium mb-4">Dutch-Bangla Bank PLC (DBBL)</p>
-                    <ul class="text-slate-400 space-y-2 list-disc ml-4">
-                        <li>Navigated complex stakeholder management in the banking sector.</li>
-                        <li>Managed customer relations and daily office administration.</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education -->
-    <section id="education" class="py-24 bg-slate-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Academic <span class="text-blue-500">Background</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass-card p-6 rounded-xl">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="p-3 bg-blue-500/20 text-blue-400 rounded-lg"><i class="fas fa-graduation-cap"></i></div>
-                        <div>
-                            <h4 class="font-bold text-lg">Master of Business Administration (MBA)</h4>
-                            <p class="text-slate-400 text-sm">Human Resource Management | 2026</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-300">Bangladesh Open University</p>
-                    <p class="text-blue-400 text-sm font-semibold mt-2">CGPA: Appeared / 4.00</p>
+    <!-- Work Demonstration Section -->
+    <section id="work" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2">Work Demonstration</h2>
+                    <div class="h-1.5 w-24 bg-blue-600 rounded-full mb-4"></div>
                 </div>
-                <div class="glass-card p-6 rounded-xl">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="p-3 bg-blue-500/20 text-blue-400 rounded-lg"><i class="fas fa-graduation-cap"></i></div>
-                        <div>
-                            <h4 class="font-bold text-lg">Master of Arts (MA)</h4>
-                            <p class="text-slate-400 text-sm">English Literature | 2020</p>
+                <p class="text-slate-400 max-w-md text-sm md:text-right border-l-2 md:border-l-0 md:border-r-2 border-blue-600/30 pl-4 md:pl-0 md:pr-4">
+                    Visual highlights of professional engagements, corporate events, and operational management at 1000FIX and industry summits.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Work Item 1 -->
+                <div class="glass-card overflow-hidden rounded-2xl group cursor-pointer h-full reveal delay-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1dYf7Y5DoxLPcxbZXwbJYb6Y2mLGo3OCr" alt="ICT Division Event" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                             <span class="inline-block px-2 py-1 bg-blue-600 text-white text-[10px] font-bold uppercase rounded mb-2">Summit</span>
+                             <h4 class="text-lg font-bold text-white leading-tight">ICT Division</h4>
                         </div>
                     </div>
-                    <p class="text-slate-300">National University</p>
-                    <p class="text-blue-400 text-sm font-semibold mt-2">CGPA: 2.85 / 4.00</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="p-3 bg-blue-500/20 text-blue-400 rounded-lg"><i class="fas fa-user-graduate"></i></div>
-                        <div>
-                            <h4 class="font-bold text-lg">Bachelor of Arts (BA)</h4>
-                            <p class="text-slate-400 text-sm">English Literature | 2018</p>
+
+                <!-- Work Item 2 -->
+                <div class="glass-card overflow-hidden rounded-2xl group cursor-pointer h-full reveal delay-200">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/14B0jNAzgLu-_lZJUHWMi8r0cVT6n_KoP" alt="1000FIX Connect" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                             <span class="inline-block px-2 py-1 bg-teal-600 text-white text-[10px] font-bold uppercase rounded mb-2">Event</span>
+                             <h4 class="text-lg font-bold text-white leading-tight">Cloud Connect</h4>
                         </div>
                     </div>
-                    <p class="text-slate-300">National University</p>
-                    <p class="text-blue-400 text-sm font-semibold mt-2">CGPA: 2.65 / 4.00</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="p-3 bg-blue-500/20 text-blue-400 rounded-lg"><i class="fas fa-user-graduate"></i></div>
-                        <div>
-                            <h4 class="font-bold text-lg">Higher Secondary Certificate</h4>
-                            <p class="text-slate-400 text-sm">Humanities | 2014</p>
+
+                <!-- Work Item 3 -->
+                <div class="glass-card overflow-hidden rounded-2xl group cursor-pointer h-full reveal delay-300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1aNg9RgRKLL7NYw2hD0ZeP2ZSCxkzxl38" alt="Customer Service Center" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                             <span class="inline-block px-2 py-1 bg-purple-600 text-white text-[10px] font-bold uppercase rounded mb-2">Operations</span>
+                             <h4 class="text-lg font-bold text-white leading-tight">Service Ops</h4>
                         </div>
                     </div>
-                    <p class="text-slate-300">Government Prafulla Chandra College</p>
-                    <p class="text-blue-400 text-sm font-semibold mt-2">CGPA: 4.20 / 5.00</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="p-3 bg-blue-500/20 text-blue-400 rounded-lg"><i class="fas fa-user-graduate"></i></div>
-                        <div>
-                            <h4 class="font-bold text-lg">Secondary School Certificate</h4>
-                            <p class="text-slate-400 text-sm">Business Studies | 2012</p>
+
+                <!-- Work Item 4 -->
+                <div class="glass-card overflow-hidden rounded-2xl group cursor-pointer h-full reveal delay-400">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1XeTy6_bgh-qXWEQMGKcH0U5HG-9C6t3M" alt="Professional Portfolio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                             <span class="inline-block px-2 py-1 bg-orange-600 text-white text-[10px] font-bold uppercase rounded mb-2">Strategy</span>
+                             <h4 class="text-lg font-bold text-white leading-tight">Industry Lead</h4>
                         </div>
                     </div>
-                    <p class="text-slate-300">Bagerhat ML. Secondary High School</p>
-                    <p class="text-blue-400 text-sm font-semibold mt-2">CGPA: 3.63 / 5.00</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-4">Let's <span class="gradient-text">Connect</span></h2>
-            <p class="text-slate-400 mb-12 max-w-xl mx-auto">Available for senior roles in sales management and operations across Bangladesh.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="p-6">
-                    <div class="text-blue-500 text-2xl mb-2"><i class="fas fa-envelope"></i></div>
-                    <p class="font-semibold">Email</p>
-                    <a href="mailto:alaminhowlader40@gmail.com" class="text-slate-400 hover:text-white">alaminhowlader40@gmail.com</a>
+    <!-- Training & Certifications Section -->
+    <section id="certifications" class="py-32 relative bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center justify-between mb-16 reveal">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2">Training & Certifications</h2>
+                    <div class="h-1.5 w-20 bg-blue-600 rounded-full"></div>
                 </div>
-                <div class="p-6">
-                    <div class="text-blue-500 text-2xl mb-2"><i class="fas fa-phone"></i></div>
-                    <p class="font-semibold">Mobile</p>
-                    <p class="text-slate-400">+88 01994190889</p>
-                </div>
-                <div class="p-6">
-                    <div class="text-blue-500 text-2xl mb-2"><i class="fas fa-map-marker-alt"></i></div>
-                    <p class="font-semibold">Location</p>
-                    <p class="text-slate-400">37, Koborkhana Road, Sorui, Bagerhat Sadar, Bagerhat-9300, Bangladesh</p>
-                </div>
+                <div class="hidden sm:block text-slate-500 font-mono text-sm uppercase tracking-widest">Lifelong Learning</div>
             </div>
 
-            <div class="flex justify-center space-x-6 text-2xl">
-                <a href="https://www.linkedin.com/in/alamin-howlader-64303610b/" target="_blank" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/8801994190889" target="_blank" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://t.me/8801994190889" target="_blank" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-telegram"></i></a>
-                <a href="https://www.facebook.com/share/1AX15YKaYr/" target="_blank" class="text-slate-500 hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="https://drive.google.com/drive/folders/185V1J3JzD_L8hMfcNfIh-BfI3pVD1j2_?usp=sharing" target="_blank" class="text-slate-500 hover:text-white transition-colors"><i class="fas fa-file-download"></i></a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- Cert 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-blue-500/30 transition-all reveal delay-100">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-virus-shield text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Healthcare Safety</h4>
+                        <p class="text-slate-400 text-xs mb-4">Informal Healthcare Providers by Jeeon</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1Q6VbdRvPuRxzPb9_r1xkpo_cih8ccjKI/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-blue-500/10 hover:bg-blue-600 text-blue-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-teal-500/30 transition-all reveal delay-200">
+                    <div>
+                        <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center text-teal-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chalkboard-user text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-teal-400 transition-colors">Teacher Training</h4>
+                        <p class="text-slate-400 text-xs mb-4">Organized by USAID</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1Ougf9ONRDYQ53e-8hiQ3sjkCULWh4CzY/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-teal-500/10 hover:bg-teal-600 text-teal-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-purple-500/30 transition-all reveal delay-300">
+                    <div>
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-shield-halved text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Digital Security 2</h4>
+                        <p class="text-slate-400 text-xs mb-4">National Cyber Security Agency</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1vHhZzOnzuHDYQW21Fm73g4Tlgm27S02B/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-purple-500/10 hover:bg-purple-600 text-purple-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                 <!-- Cert 4 -->
+                 <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-sky-500/30 transition-all reveal delay-400">
+                    <div>
+                        <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center text-sky-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-shield text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-sky-400 transition-colors">Cyber Security V2</h4>
+                        <p class="text-slate-400 text-xs mb-4">Organized by DIKKHA</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1X3opr-QkVyIyhjo9b3b9RMdkDQ9bCZWj/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-sky-500/10 hover:bg-sky-600 text-sky-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 5: Networking -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-orange-500/30 transition-all reveal delay-100">
+                    <div>
+                        <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-network-wired text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-orange-400 transition-colors">Computer Networking</h4>
+                        <p class="text-slate-400 text-xs mb-4">Organized by DIKKHA</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1V7_nZl295GIF4s6n6jr5dJBxxSk4YuGL/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-orange-500/10 hover:bg-orange-600 text-orange-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 6: Hardware -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-red-500/30 transition-all reveal delay-200">
+                    <div>
+                        <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-screwdriver-wrench text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-red-400 transition-colors">Hardware Maintenance</h4>
+                        <p class="text-slate-400 text-xs mb-4">ICT Division</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1XskTsCPd0k7oC0a5RU0AJQOgZZ7H9qd4/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-red-500/10 hover:bg-red-600 text-red-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 7: Digital Security 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-indigo-500/30 transition-all reveal delay-300">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-lock text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">Digital Security</h4>
+                        <p class="text-slate-400 text-xs mb-4">National Cyber Security Agency</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/16-hbn3bKn48ZggpnIYpMiqvROT9-cWr0/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-indigo-500/10 hover:bg-indigo-600 text-indigo-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 8: Grammar -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-pink-500/30 transition-all reveal delay-400">
+                    <div>
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-spell-check text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-pink-400 transition-colors">Teaching Grammar</h4>
+                        <p class="text-slate-400 text-xs mb-4">Teaching Grammar Effectively</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1C0lnXTXBEDhDsCExLwi66l0HBufbZCyJ/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-pink-500/10 hover:bg-pink-600 text-pink-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 9: Covid A2I -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-green-500/30 transition-all reveal delay-100">
+                    <div>
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center text-green-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-mask-face text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-green-400 transition-colors">COVID-19 Awareness</h4>
+                        <p class="text-slate-400 text-xs mb-4">Organized by A2I</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1_MuM_FajRNssdaQwTQFJ0UfCo8rLbbCW/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-green-500/10 hover:bg-green-600 text-green-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Cert 10: Covid BRAC -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-yellow-500/30 transition-all reveal delay-200">
+                    <div>
+                        <div class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center text-yellow-400 mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-hand-holding-medical text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-yellow-400 transition-colors">COVID-19 Awareness</h4>
+                        <p class="text-slate-400 text-xs mb-4">Organized by BRAC</p>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1kSjyXiwKKP8g9xKD69nSEMcp3c5hAuGJ/view?usp=drive_link" target="_blank" class="w-full py-2 rounded-lg bg-yellow-500/10 hover:bg-yellow-600 text-yellow-400 hover:text-white text-xs font-bold text-center transition-all flex items-center justify-center gap-2">
+                        <span>VERIFY</span> <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl font-bold text-white mb-4">Academic Background</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Staggered Grid for Visual Interest -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+                
+                <!-- MBA (Span 2) -->
+                <div class="lg:col-span-2 glass-card p-8 rounded-3xl border-t-4 border-t-blue-500 relative overflow-hidden group reveal delay-100">
+                    <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-blue-400 text-4xl"><i class="fas fa-award"></i></div>
+                            <span class="text-4xl font-black text-slate-800/50 absolute right-4 top-4">MBA</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1 leading-tight">Master of Business Admin</h4>
+                        <h3 class="text-sm font-semibold text-blue-400 mb-4 uppercase tracking-wide">Human Resource Management</h3>
+                        <div class="flex items-center text-slate-400 text-sm mb-6">
+                            <i class="fas fa-university mr-2"></i> Bangladesh Open University
+                        </div>
+                        <div class="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-400 rounded-full text-xs font-bold">Status: Appeared</div>
+                    </div>
+                </div>
+
+                <!-- MA (Span 2) -->
+                <div class="lg:col-span-2 glass-card p-8 rounded-3xl border-t-4 border-t-teal-500 relative overflow-hidden group reveal delay-200">
+                    <div class="absolute inset-0 bg-teal-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-teal-400 text-4xl"><i class="fas fa-graduation-cap"></i></div>
+                            <span class="text-4xl font-black text-slate-800/50 absolute right-4 top-4">MA</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1 leading-tight">Master of Arts</h4>
+                        <h3 class="text-sm font-semibold text-teal-400 mb-4 uppercase tracking-wide">English Literature</h3>
+                        <div class="flex items-center text-slate-400 text-sm mb-6">
+                            <i class="fas fa-university mr-2"></i> National University
+                        </div>
+                        <div class="inline-block px-4 py-1.5 bg-teal-500/10 text-teal-400 rounded-full text-xs font-bold">CGPA: 2.85 / 4.00</div>
+                    </div>
+                </div>
+
+                <!-- BA (Span 2) -->
+                <div class="lg:col-span-2 glass-card p-8 rounded-3xl border-t-4 border-t-purple-500 relative overflow-hidden group reveal delay-300">
+                    <div class="absolute inset-0 bg-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-purple-400 text-4xl"><i class="fas fa-user-graduate"></i></div>
+                            <span class="text-4xl font-black text-slate-800/50 absolute right-4 top-4">BA</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1 leading-tight">Bachelor of Arts</h4>
+                        <h3 class="text-sm font-semibold text-purple-400 mb-4 uppercase tracking-wide">English Literature</h3>
+                        <div class="flex items-center text-slate-400 text-sm mb-6">
+                            <i class="fas fa-university mr-2"></i> National University
+                        </div>
+                        <div class="inline-block px-4 py-1.5 bg-purple-500/10 text-purple-400 rounded-full text-xs font-bold">CGPA: 2.65 / 4.00</div>
+                    </div>
+                </div>
+
+                <!-- HSC (Span 3) -->
+                <div class="lg:col-span-3 glass-card p-8 rounded-3xl border-t-4 border-t-fuchsia-500 relative overflow-hidden group reveal delay-100">
+                    <div class="absolute inset-0 bg-fuchsia-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-fuchsia-400 text-4xl"><i class="fa-solid fa-building-columns"></i></div>
+                            <span class="text-4xl font-black text-slate-800/50 absolute right-4 top-4">HSC</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1 leading-tight">Higher Secondary Certificate</h4>
+                        <h3 class="text-sm font-semibold text-fuchsia-400 mb-4 uppercase tracking-wide">Humanities</h3>
+                        <div class="flex items-center text-slate-400 text-sm mb-6">
+                            <i class="fas fa-school mr-2"></i> Govt Prafulla Chandara College | 2014
+                        </div>
+                        <div class="inline-block px-4 py-1.5 bg-fuchsia-500/10 text-fuchsia-400 rounded-full text-xs font-bold">CGPA: 4.20 / 5.00</div>
+                    </div>
+                </div>
+
+                <!-- SSC (Span 3) -->
+                <div class="lg:col-span-3 glass-card p-8 rounded-3xl border-t-4 border-t-indigo-500 relative overflow-hidden group reveal delay-200">
+                    <div class="absolute inset-0 bg-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-indigo-400 text-4xl"><i class="fa-solid fa-school"></i></div>
+                            <span class="text-4xl font-black text-slate-800/50 absolute right-4 top-4">SSC</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1 leading-tight">Secondary School Certificate</h4>
+                        <h3 class="text-sm font-semibold text-indigo-400 mb-4 uppercase tracking-wide">Business Studies</h3>
+                        <div class="flex items-center text-slate-400 text-sm mb-6">
+                            <i class="fas fa-school mr-2"></i> Bagerhat Multi-Lateral Collegiate | 2012
+                        </div>
+                        <div class="inline-block px-4 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-bold">CGPA: 4.50 / 5.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/20"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-10 md:p-20 text-center border border-blue-500/30 shadow-2xl relative overflow-hidden reveal">
+                <!-- Background Glow -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+                
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10">Ready to Collaborate?</h2>
+                <p class="text-slate-400 text-lg mb-12 max-w-2xl mx-auto relative z-10">
+                    Open to discussing customer success strategies, operational excellence, or new opportunities in the retail sector.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
+                    <a href="mailto:alamin.howlader@example.com" class="group flex items-center justify-center space-x-3 bg-white hover:bg-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-1">
+                        <i class="fas fa-envelope text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Email Me</span>
+                    </a>
+                    <a href="#" class="group flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-600/30">
+                        <i class="fab fa-linkedin text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="tel:+880123456789" class="group flex items-center justify-center space-x-3 border border-slate-600 hover:border-slate-400 text-white px-8 py-4 rounded-xl font-bold transition-all hover:bg-white/5">
+                        <i class="fas fa-phone text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Call Now</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-900 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 Alamin Howlader. All rights reserved.</p>
+    <footer class="bg-slate-950 border-t border-white/5 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-extrabold text-white tracking-tighter">AH<span class="text-blue-500">.</span></div>
+            <p class="text-slate-500 text-sm">© 2026 Alamin Howlader. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-blue-600 flex items-center justify-center text-slate-400 hover:text-white transition-all transform hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-pink-600 flex items-center justify-center text-slate-400 hover:text-white transition-all transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-sky-500 flex items-center justify-center text-slate-400 hover:text-white transition-all transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('back-to-top');
 
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            const isClosed = mobileMenu.classList.contains('translate-x-full');
+            if (isClosed) {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // Close menu on link click
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
             });
+        });
+
+        // Scroll Effects
+        window.addEventListener('scroll', () => {
+            // Navbar Glass Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-opacity-80', 'bg-opacity-95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-opacity-95', 'bg-opacity-80');
+            }
+
+            // Back to Top Button
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+            } else {
+                backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll Reveal Animation
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
         });
     </script>
 </body>
